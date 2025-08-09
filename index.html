@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cosmos — The Life Optimization Engine</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#071026">
+</head>
+<body>
+  <div class="nebula"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="logo">◎</div>
+      <div>
+        <h1>Cosmos</h1>
+        <div class="sub">Welcome, <strong>Soumil</strong> — let’s rule your universe today.</div>
+      </div>
+      <div class="top-actions">
+        <button id="syncBtn" class="btn-ghost">Encrypted Backup</button>
+        <button id="installBtn" class="btn-ghost" style="display:none">Install</button>
+        <button id="addHabit" class="btn-main">+ Add Habit</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <main>
+        <section class="panel">
+          <div class="panel-head">
+            <div><strong>Today — Your Focus</strong><div class="small">Tap to mark. Toggle Focus Mode to limit to top 3.</div></div>
+            <div><label class="badge"><input id="focusToggle" type="checkbox"> Focus Mode</label></div>
+          </div>
+          <div id="habits" class="habits"></div>
+
+          <div class="controls">
+            <button id="undo" class="btn-ghost">Undo</button>
+            <button id="export" class="btn-ghost">Export JSON</button>
+            <button id="import" class="btn-ghost">Import JSON</button>
+            <button id="notify" class="btn-main">Enable Local Reminders</button>
+          </div>
+        </section>
+
+        <section class="panel mt">
+          <strong>Weekly Challenges</strong>
+          <div id="weekRange" class="small"></div>
+          <div id="challenges" class="challenges"></div>
+          <div class="small mt">Complete challenges to earn badges & unlock themes.</div>
+          <div class="mt"><button id="regenChallenges" class="btn-main">Regenerate</button></div>
+        </section>
+
+        <section class="panel mt">
+          <strong>Insights & Weekly Report</strong>
+          <div id="insights" class="small"></div>
+          <canvas id="trendChart" height="120"></canvas>
+        </section>
+      </main>
+
+      <aside>
+        <section class="panel">
+          <strong>Analytics</strong>
+          <div class="analytics" id="analyticsArea">
+            <div class="stat"><div class="small">Consistency</div><div id="consistency">—</div></div>
+            <div class="stat"><div class="small">Current streak</div><div id="curStreak">—</div></div>
+            <div class="stat"><div class="small">Longest streak</div><div id="longStreak">—</div></div>
+          </div>
+
+          <div class="mt"><strong>Heatmap</strong><div id="heatmap" class="heatmap"></div></div>
+        </section>
+
+        <section class="panel mt">
+          <strong>Constellation Map</strong>
+          <div class="constellation"><canvas id="stars" height="120"></canvas></div>
+          <div class="small" id="priorityList"></div>
+        </section>
+
+        <section class="panel mt">
+          <strong>Badges</strong>
+          <div id="badges" class="badges"></div>
+        </section>
+      </aside>
+    </div>
+
+    <footer>Tip: Add to Home Screen for a native-like experience. Encrypted backup allows restore between devices.</footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(()=>{/*ignore*/});
+    }
+  </script>
+</body>
+</html>
